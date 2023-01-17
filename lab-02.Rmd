@@ -19,10 +19,17 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+From the graph, it looks like that African has the lowest plastic waste per capical on average. The distribution of plastic waste per capital for North America has the greatest variation. 
 
 ```{r plastic-waste-continent}
-# insert code here
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+ geom_histogram(binwidth = 0.2) +
+ labs (x="plastic_waste_per_captical", y="count", title="graph 1.1") +
+ facet_wrap(~continent, nrow=7)
+
+```
+
+
 ```
 
 ### Exercise 2
