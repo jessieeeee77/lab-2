@@ -41,9 +41,12 @@ ggplot(data = plastic_waste,
                   fill = continent)) +
   geom_density(alpha = 0.3)
 ```
-Color and the fill can be specified by the name of the color, like "red". but the alpha refers to the transparency of all the colors that is presented in the graph.
-What do the violin plots reveal that box plots do not? What features are apparent in the box plots but not in the violin plots?
+
 ### Exercise 3
+Color and the fill can be specified by the name of the color, like "red". but the alpha refers to the transparency of all the colors that is presented in the graph.
+
+### Exercise 4
+violin plots also shows the density of each category. The botplots emphasize some extreme values which can not be directly seen in the violin plots.
 ```{r plastic-waste-violin}
 ggplot(data = plastic_waste, 
       mapping = aes(x = continent, 
@@ -55,24 +58,11 @@ ggplot(data = plastic_waste,
                     y = plastic_waste_per_cap)) +
    geom_boxplot()
 ```
-violin plots also shows the density of each category. The botplots emphasize some extreme values which can not be directly seen in the violin plots.
-
-### Exercise 4
-
-```{r plastic-waste-}
-ggplot(data = plastic_waste, 
-       mapping = aes(x = mismanaged_plastic_waste_per_cap,
-                     y = plastic_waste_per_cap)) +
-    geom_point()
-```
-
-4.1. a slight positive correlation between mismanaged waste per capital and waste per capital.
-
 
 
 ### Exercise 5
 
-4.2. It helps to visualize difference among continents and distinguish the correlation for each continent, but the points are still very concentrated and hard to look at.
+4.1. a slight positive correlation between mismanaged waste per capital and waste per capital.
 
 ```{r plastic-waste-mismanaged}
  ggplot(data = plastic_waste, 
@@ -84,18 +74,18 @@ ggplot(data = plastic_waste,
 
 ### Exercise 6
 
-4.3. Visualize the relationship between plastic waste per capita and total population as well as plastic waste per capita and coastal population. You will need to make two separate plots. Do either of these pairs of variables appear to be more strongly linearly associated?
+4.2. It helps to visualize difference among continents and distinguish the correlation for each continent, but the points are still very concentrated and hard to look at.
 
 ```{r plastic-waste-mismanaged-continent}
- ggplot(data = plastic_waste, 
-+        mapping = aes(x = mismanaged_plastic_waste_per_cap, 
-+                      y = plastic_waste_per_cap,color = continent,fill = continent)) +
-+     geom_point()
+ggplot(data = plastic_waste, 
+       mapping = aes(x = mismanaged_plastic_waste_per_cap, 
+       y = plastic_waste_per_cap,color = continent,fill = continent)) +
+   geom_point()
 ```
 
 ### Exercise 7
 
-coastal population has stronger relationship with plastic waste per capital especially in Asia. Total population and plastic waste per capital has weaker associations in general. None of the pairs of variables appear to be storngly linearly associated.
+coastal population has slightly negative relationship with plastic waste per capital. Total population and plastic waste per capital has weaker associations in general. None of the pairs of variables appear to be storngly linearly associated.
 
 ```{r plastic-waste-population-total}
  ggplot(data = plastic_waste, 

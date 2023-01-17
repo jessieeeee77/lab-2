@@ -45,48 +45,103 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
 
     ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
 
-![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- --> Color
-and the fill can be specified by the name of the color, like “red”. but
-the alpha refers to the transparency of all the colors that is presented
-in the graph. \### Exercise 3
+![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- -->
 
-Remove this text, and add your answer for Exercise 3 here.
+### Exercise 3
+
+Color and the fill can be specified by the name of the color, like
+“red”. but the alpha refers to the transparency of all the colors that
+is presented in the graph.
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+violin plots also shows the density of each category. The botplots
+emphasize some extreme values which can not be directly seen in the
+violin plots.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, 
+      mapping = aes(x = continent, 
+                    y = plastic_waste_per_cap)) +
+    geom_violin()
 ```
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_ydensity()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
+
+``` r
+ggplot(data = plastic_waste, 
+      mapping = aes(x = continent, 
+                    y = plastic_waste_per_cap)) +
+   geom_boxplot()
+```
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_boxplot()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-2.png)<!-- -->
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+4.1. a slight positive correlation between mismanaged waste per capital
+and waste per capital.
 
 ``` r
-# insert code here
+ ggplot(data = plastic_waste, 
+       mapping = aes(x = mismanaged_plastic_waste_per_cap,
+                     y = plastic_waste_per_cap)) +
+    geom_point()
 ```
+
+    ## Warning: Removed 51 rows containing missing values (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+4.2. It helps to visualize difference among continents and distinguish
+the correlation for each continent, but the points are still very
+concentrated and hard to look at.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = mismanaged_plastic_waste_per_cap, 
+       y = plastic_waste_per_cap,color = continent,fill = continent)) +
+   geom_point()
 ```
+
+    ## Warning: Removed 51 rows containing missing values (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
+coastal population has slightly negative relationship with plastic waste
+per capital. Total population and plastic waste per capital has weaker
+associations in general. None of the pairs of variables appear to be
+storngly linearly associated.
 
 ``` r
-# insert code here
+ ggplot(data = plastic_waste, 
+        mapping = aes(x = total_pop, 
+                     y = plastic_waste_per_cap,color = continent,fill = continent)) +
+                     geom_point()
 ```
 
+    ## Warning: Removed 61 rows containing missing values (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
 ``` r
-# insert code here
+ggplot(data = plastic_waste, 
+      mapping = aes(x = coastal_pop, 
+                     y = plastic_waste_per_cap, color = continent,fill = continent)) +
+   geom_point()
 ```
+
+    ## Warning: Removed 51 rows containing missing values (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
 ### Exercise 8
 
