@@ -37,9 +37,18 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
 
 
     ```r
-    # insert code here
+    ggplot(data = plastic_waste, 
+         mapping = aes(x = plastic_waste_per_cap, 
+                      color = continent, 
+                      fill = continent)) +
+      geom_density(alpha = 0.3)
 
-### Exercise 3
+    ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- --> Color
+and the fill can be specified by the name of the color, like “red”. but
+the alpha refers to the transparency of all the colors that is presented
+in the graph. \### Exercise 3
 
 Remove this text, and add your answer for Exercise 3 here.
 
