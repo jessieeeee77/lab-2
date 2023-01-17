@@ -18,8 +18,8 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 ### Exercise 1
 
 From the graph, it looks like that African has the lowest plastic waste
-per capical on average. The distribution of plastic waste per capital
-for North America has the greatest variation.
+per capica on average. The distribution of plastic waste per capita for
+North America has the greatest variation.
 
 ``` r
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
@@ -83,7 +83,7 @@ ggplot(data = plastic_waste,
 
 ### Exercise 5
 
-4.1. a slight positive correlation between mismanaged waste per capital
+4.1. a slight positive correlation between mismanaged waste per capita
 and waste per capital.
 
 ``` r
@@ -117,7 +117,7 @@ ggplot(data = plastic_waste,
 ### Exercise 7
 
 coastal population has slightly negative relationship with plastic waste
-per capital. Total population and plastic waste per capital has weaker
+per capita. Total population and plastic waste per capita has weaker
 associations in general. None of the pairs of variables appear to be
 storngly linearly associated.
 
@@ -145,11 +145,28 @@ ggplot(data = plastic_waste,
 
 ### Exercise 8
 
-Remove this text, and add your answer for Exercise 8 here.
-
 ``` r
-# insert code here
+data <- plastic_waste %>%
+filter(plastic_waste_per_cap < 3)
+y <- as.numeric(plastic_waste$coastal_pop/plastic_waste$plastic_waste_per_cap)
+ggplot(data = plastic_waste, 
+       mapping = aes(x = coastal_pop,
+                     y = plastic_waste_per_cap, color = continent,fill = continent)) +
+                  labs (x = "coastal population", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
+ stat_smooth(size=1, alpha=0.4) +
+ geom_point()
 ```
+
+    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `linewidth` instead.
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_smooth()`).
+
+    ## Warning: Removed 51 rows containing missing values (`geom_point()`).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
 
 ## Pro-Tips
 

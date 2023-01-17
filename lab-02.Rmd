@@ -19,7 +19,7 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-From the graph, it looks like that African has the lowest plastic waste per capical on average. The distribution of plastic waste per capital for North America has the greatest variation. 
+From the graph, it looks like that African has the lowest plastic waste per capica on average. The distribution of plastic waste per capita for North America has the greatest variation. 
 
 ```{r plastic-waste-continent}
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
@@ -62,7 +62,7 @@ ggplot(data = plastic_waste,
 
 ### Exercise 5
 
-4.1. a slight positive correlation between mismanaged waste per capital and waste per capital.
+4.1. a slight positive correlation between mismanaged waste per capita and waste per capital.
 
 ```{r plastic-waste-mismanaged}
  ggplot(data = plastic_waste, 
@@ -85,7 +85,7 @@ ggplot(data = plastic_waste,
 
 ### Exercise 7
 
-coastal population has slightly negative relationship with plastic waste per capital. Total population and plastic waste per capital has weaker associations in general. None of the pairs of variables appear to be storngly linearly associated.
+coastal population has slightly negative relationship with plastic waste per capita. Total population and plastic waste per capita has weaker associations in general. None of the pairs of variables appear to be storngly linearly associated.
 
 ```{r plastic-waste-population-total}
  ggplot(data = plastic_waste, 
@@ -103,10 +103,16 @@ ggplot(data = plastic_waste,
 
 ### Exercise 8
 
-Remove this text, and add your answer for Exercise 8 here.
-
 ```{r recreate-viz}
-# insert code here
+data <- plastic_waste %>%
+filter(plastic_waste_per_cap < 3)
+y <- as.numeric(plastic_waste$coastal_pop/plastic_waste$plastic_waste_per_cap)
+ggplot(data = plastic_waste, 
+       mapping = aes(x = coastal_pop,
+                     y = plastic_waste_per_cap, color = continent,fill = continent)) +
+                  labs (x = "coastal population", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
+ stat_smooth(size=1, alpha=0.4) +
+ geom_point()
 ```
 
 ## Pro-Tips
