@@ -53,6 +53,26 @@ Color and the fill can be specified by the name of the color, like
 “red”. but the alpha refers to the transparency of all the colors that
 is presented in the graph.
 
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = continent, 
+                     y = plastic_waste_per_cap)) +
+  geom_violin()+
+  geom_boxplot(width=.3, fill="green") +
+  stat_summary(fun.y=median, geom="point") 
+```
+
+    ## Warning: The `fun.y` argument of `stat_summary()` is deprecated as of ggplot2 3.3.0.
+    ## ℹ Please use the `fun` argument instead.
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_ydensity()`).
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_boxplot()`).
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_summary()`).
+
+![](lab-02_files/figure-gfm/plastic-waste--1.png)<!-- -->
+
 ### Exercise 4
 
 violin plots also shows the density of each category. The botplots
@@ -146,15 +166,17 @@ ggplot(data = plastic_waste,
 ### Exercise 8
 
 ``` r
-data <- plastic_waste %>%
-filter(plastic_waste_per_cap < 3)
+df <- plastic_waste
+df<- df %>% filter(plastic_waste_per_cap < 3) 
 y <- as.numeric(plastic_waste$coastal_pop/plastic_waste$plastic_waste_per_cap)
-ggplot(data = plastic_waste, 
-       mapping = aes(x = coastal_pop,
-                     y = plastic_waste_per_cap, color = continent,fill = continent)) +
-                  labs (x = "coastal population", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
- stat_smooth(size=1, alpha=0.4) +
- geom_point()
+ggplot(df, 
+       mapping = aes(x = coastal_pop/total_pop,
+                     y = plastic_waste_per_cap)) + 
+                     theme_light() +
+                     theme_linedraw() +
+                  labs (x = "coastal proportion", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
+ geom_smooth(size=1, alpha=0.4) +
+ geom_point(aes(color=continent))
 ```
 
     ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
@@ -162,13 +184,12 @@ ggplot(data = plastic_waste,
 
     ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-    ## Warning: Removed 51 rows containing non-finite values (`stat_smooth()`).
+    ## Warning: Removed 10 rows containing non-finite values (`stat_smooth()`).
 
-    ## Warning: Removed 51 rows containing missing values (`geom_point()`).
+    ## Warning: Removed 10 rows containing missing values (`geom_point()`).
 
 ![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
-
-## Pro-Tips
+ggplot(ToothGrowth, aes(x=dose, y=len)) + geom_boxplot() \## Pro-Tips
 
 ### Excercise 3
 
@@ -180,5 +201,4 @@ fill=“green”) + stat_summary(fun.y=median, geom=“point”)
 
 ### Exercise 5
 
-Helpful
-reference:<http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements>
+Helpful reference:

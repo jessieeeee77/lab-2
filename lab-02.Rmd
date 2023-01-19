@@ -45,6 +45,15 @@ ggplot(data = plastic_waste,
 ### Exercise 3
 Color and the fill can be specified by the name of the color, like "red". but the alpha refers to the transparency of all the colors that is presented in the graph.
 
+```{r plastic-waste-}
+ggplot(data = plastic_waste, 
+       mapping = aes(x = continent, 
+                     y = plastic_waste_per_cap)) +
+  geom_violin()+
+  geom_boxplot(width=.3, fill="green") +
+  stat_summary(fun.y=median, geom="point") 
+```
+
 ### Exercise 4
 violin plots also shows the density of each category. The botplots emphasize some extreme values which can not be directly seen in the violin plots.
 ```{r plastic-waste-violin}
@@ -104,17 +113,21 @@ ggplot(data = plastic_waste,
 ### Exercise 8
 
 ```{r recreate-viz}
-data <- plastic_waste %>%
-filter(plastic_waste_per_cap < 3)
+df <- plastic_waste
+df<- df %>% filter(plastic_waste_per_cap < 3) 
 y <- as.numeric(plastic_waste$coastal_pop/plastic_waste$plastic_waste_per_cap)
-ggplot(data = plastic_waste, 
-       mapping = aes(x = coastal_pop,
-                     y = plastic_waste_per_cap, color = continent,fill = continent)) +
-                  labs (x = "coastal population", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
- stat_smooth(size=1, alpha=0.4) +
- geom_point()
-```
+ggplot(df, 
+       mapping = aes(x = coastal_pop/total_pop,
+                     y = plastic_waste_per_cap)) + 
+                     theme_light() +
+                     theme_linedraw() +
+                  labs (x = "coastal proportion", y = "plastic waste per capita", title = "plastic waste vs. coastal population portion", fill = "continent") + 
+ geom_smooth(size=1, alpha=0.4) +
+ geom_point(aes(color=continent))
 
+ 
+```
+ggplot(ToothGrowth, aes(x=dose, y=len)) + geom_boxplot()
 ## Pro-Tips
 
 ### Excercise 3
@@ -130,7 +143,7 @@ ggplot(data = plastic_waste,
   
 ### Exercise 5 
 
-Helpful reference:http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
+Helpful reference:
 
 
 
